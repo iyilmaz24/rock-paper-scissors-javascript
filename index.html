@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 
 <script>
+
     function getComputerChoice(){
-            return Math.floor(Math.random(0, 2) * 3);
+            num = Math.floor(Math.random(0, 2) * 3);
+            return ((num === 0) ? "Rock" : 
+                ((num === 1) ? "Scissors" : "Paper"));
+    };
+
+    playerInput = parseInt(prompt("Type 1 for Rock, 2 for Paper, and 3 for Scissors: "));
+    playerChoice = ((playerInput === 1) ? "Rock" : 
+                ((playerInput === 2) ? "Paper" : "Scissors"));
+
+
+    function calcResult(player, computer){
+        console.log(player)
+        console.log(computer)
     }
-    compChoice = getComputerChoice();
-
-
+    calcResult(playerChoice, getComputerChoice());
 
 </script>
