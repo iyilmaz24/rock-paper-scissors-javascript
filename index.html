@@ -5,7 +5,7 @@
     function getComputerChoice(){
             num = Math.floor(Math.random(0, 2) * 3);
             return ((num === 0) ? "Rock" : 
-                ((num === 1) ? "Scissors" : "Paper"));
+                ((num === 1) ? "Paper" : "Scissors"));
     };
 
     playerInput = parseInt(prompt("Type 1 for Rock, 2 for Paper, and 3 for Scissors: "));
@@ -14,9 +14,28 @@
 
 
     function calcResult(player, computer){
-        console.log(player)
-        console.log(computer)
-    }
-    calcResult(playerChoice, getComputerChoice());
+
+        // all cases of a tie are accounted for with this
+        if(computer === player){
+            return `You (${player}) tied vs ${computer}`;
+        }
+
+       return (computer === "Rock" && player === "Paper") ? (`You (${player}) win vs ${computer}`)
+
+        : (computer === "Paper" && player === "Rock") ? (`You (${player}) lose vs ${computer}`) 
+
+        : (computer === "Paper" && player === "Scissors") ? (`You (${player}) win vs ${computer}`)
+
+        : (computer === "Rock" && player === "Scissors") ? (`You (${player}) lose vs ${computer}`)
+
+        : ((player === "Paper") ? (`You (${player}) lose vs ${computer}`) 
+
+                : (`You (${player}) win vs ${computer}`));
+
+    }   
+
+    finalResult = calcResult(playerChoice, getComputerChoice());
+
+    console.log(finalResult);
 
 </script>
