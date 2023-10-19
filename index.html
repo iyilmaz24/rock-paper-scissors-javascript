@@ -4,58 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <script>
-
-        userClick = document.getElementById("#choiceBtnSpan");
-        // add a line of code here that tracks if userClick gets clicked on and then runs below code
-        // change userClick below to be a for loop with each button 
-        userClick.addEventListener("click", (e) => {
-            console.log(e.target);
-            console.log(e.value);
-        });
-
-
-        function getComputerChoice(){
-                num = Math.floor(Math.random(0, 2) * 3);
-                return ((num === 0) ? "Rock" : 
-                    ((num === 1) ? "Paper" : "Scissors"));
-        };
-    
-        playerInput = parseInt(prompt("Type 1 for Rock, 2 for Paper, and 3 for Scissors: "));
-        playerChoice = ((playerInput === 1) ? "Rock" : 
-                    ((playerInput === 2) ? "Paper" : "Scissors"));
-    
-    
-        function calcResult(player, computer){
-    
-            // all cases of a tie are accounted for with this
-            if(computer === player){
-                return `You (${player}) tied vs ${computer}`;
-            }
-    
-           return (computer === "Rock" && player === "Paper") ? (`You (${player}) win vs ${computer}`)
-    
-            : (computer === "Paper" && player === "Rock") ? (`You (${player}) lose vs ${computer}`) 
-    
-            : (computer === "Paper" && player === "Scissors") ? (`You (${player}) win vs ${computer}`)
-    
-            : (computer === "Rock" && player === "Scissors") ? (`You (${player}) lose vs ${computer}`)
-    
-            : ((player === "Paper") ? (`You (${player}) lose vs ${computer}`) 
-    
-                    : (`You (${player}) win vs ${computer}`));
-    
-        }   
-    
-        finalResult = calcResult(playerChoice, getComputerChoice());
-    
-        console.log(finalResult);
-    
-    </script>
-
     <link rel="stylesheet" href="styles.css">
-
     <title>RPS JavaScript</title>
 </head>
 <body>
@@ -79,6 +28,44 @@
             Make Selection Using Buttons!
         </div>
     </div>
-
 </body>
+
+<script>
+
+    function getComputerChoice(){
+            num = Math.floor(Math.random(0, 2) * 3);
+            return ((num === 0) ? "Rock" : 
+                ((num === 1) ? "Paper" : "Scissors"));
+    };
+
+    function calcResult(player, computer){
+        // all cases of a tie are accounted for with this if statement
+        if(computer === player){
+            finalResult = `You (${player}) tied vs ${computer}`;
+        }
+        else {
+            finalResult = (computer === "Rock" && player === "Paper") ? (`You (${player}) win vs ${computer}`)
+            : (computer === "Paper" && player === "Rock") ? (`You (${player}) lose vs ${computer}`) 
+            : (computer === "Paper" && player === "Scissors") ? (`You (${player}) win vs ${computer}`)
+            : (computer === "Rock" && player === "Scissors") ? (`You (${player}) lose vs ${computer}`)
+            : ((player === "Paper") ? (`You (${player}) lose vs ${computer}`) 
+                    : (`You (${player}) win vs ${computer}`));
+        }
+
+        displayResult = document.getElementById("gameResultsDiv");
+        displayResult.textContent = finalResult;
+
+    }   
+
+    let userChoice = "";
+    choiceButtons = document.getElementsByTagName("button");
+    for(let i = 0; i < choiceButtons.length; i++){
+        choiceButtons[i].addEventListener("click", (e) => {
+            userChoice = (e.target.value);
+            calcResult(userChoice, getComputerChoice());
+        });
+    }
+
+</script>
+
 </html>
