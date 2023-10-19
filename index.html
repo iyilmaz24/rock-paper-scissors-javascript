@@ -1,41 +1,63 @@
 <!DOCTYPE html>
 
-<script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    function getComputerChoice(){
-            num = Math.floor(Math.random(0, 2) * 3);
-            return ((num === 0) ? "Rock" : 
-                ((num === 1) ? "Paper" : "Scissors"));
-    };
+    <script>
 
-    playerInput = parseInt(prompt("Type 1 for Rock, 2 for Paper, and 3 for Scissors: "));
-    playerChoice = ((playerInput === 1) ? "Rock" : 
-                ((playerInput === 2) ? "Paper" : "Scissors"));
+        function getComputerChoice(){
+                num = Math.floor(Math.random(0, 2) * 3);
+                return ((num === 0) ? "Rock" : 
+                    ((num === 1) ? "Paper" : "Scissors"));
+        };
+    
+        playerInput = parseInt(prompt("Type 1 for Rock, 2 for Paper, and 3 for Scissors: "));
+        playerChoice = ((playerInput === 1) ? "Rock" : 
+                    ((playerInput === 2) ? "Paper" : "Scissors"));
+    
+    
+        function calcResult(player, computer){
+    
+            // all cases of a tie are accounted for with this
+            if(computer === player){
+                return `You (${player}) tied vs ${computer}`;
+            }
+    
+           return (computer === "Rock" && player === "Paper") ? (`You (${player}) win vs ${computer}`)
+    
+            : (computer === "Paper" && player === "Rock") ? (`You (${player}) lose vs ${computer}`) 
+    
+            : (computer === "Paper" && player === "Scissors") ? (`You (${player}) win vs ${computer}`)
+    
+            : (computer === "Rock" && player === "Scissors") ? (`You (${player}) lose vs ${computer}`)
+    
+            : ((player === "Paper") ? (`You (${player}) lose vs ${computer}`) 
+    
+                    : (`You (${player}) win vs ${computer}`));
+    
+        }   
+    
+        finalResult = calcResult(playerChoice, getComputerChoice());
+    
+        console.log(finalResult);
+    
+    </script>
 
+    <link rel="stylesheet" href="styles.css">
 
-    function calcResult(player, computer){
-
-        // all cases of a tie are accounted for with this
-        if(computer === player){
-            return `You (${player}) tied vs ${computer}`;
-        }
-
-       return (computer === "Rock" && player === "Paper") ? (`You (${player}) win vs ${computer}`)
-
-        : (computer === "Paper" && player === "Rock") ? (`You (${player}) lose vs ${computer}`) 
-
-        : (computer === "Paper" && player === "Scissors") ? (`You (${player}) win vs ${computer}`)
-
-        : (computer === "Rock" && player === "Scissors") ? (`You (${player}) lose vs ${computer}`)
-
-        : ((player === "Paper") ? (`You (${player}) lose vs ${computer}`) 
-
-                : (`You (${player}) win vs ${computer}`));
-
-    }   
-
-    finalResult = calcResult(playerChoice, getComputerChoice());
-
-    console.log(finalResult);
-
-</script>
+    <title>RPS JavaScript</title>
+</head>
+<body>
+    <button class="choiceBtn">
+        Rock
+    </button>
+    <button class="choiceBtn">
+        Paper
+    </button>
+    <button class="choiceBtn">
+        Scissors
+    </button>
+</body>
+</html>
