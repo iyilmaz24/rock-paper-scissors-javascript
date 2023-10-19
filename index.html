@@ -7,6 +7,15 @@
 
     <script>
 
+        userClick = document.getElementById("#choiceBtnSpan");
+        // add a line of code here that tracks if userClick gets clicked on and then runs below code
+        // change userClick below to be a for loop with each button 
+        userClick.addEventListener("click", (e) => {
+            console.log(e.target);
+            console.log(e.value);
+        });
+
+
         function getComputerChoice(){
                 num = Math.floor(Math.random(0, 2) * 3);
                 return ((num === 0) ? "Rock" : 
@@ -51,14 +60,17 @@
 </head>
 <body>
     <div id="gameplayDiv">
+
+        <img id="rpsImage" src="rps.png">
+
         <span id="choiceBtnSpan">
-            <button class="choiceBtn">
+            <button class="choiceBtn" value="Rock">
                 Rock
             </button>
-            <button class="choiceBtn">
+            <button class="choiceBtn" value="Paper">
                 Paper
             </button>
-            <button class="choiceBtn">
+            <button class="choiceBtn" value="Scissors">
                 Scissors
             </button>
         </span>
